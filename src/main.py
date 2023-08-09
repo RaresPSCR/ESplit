@@ -11,7 +11,7 @@ def interpret(input_text):
 
 # Test the interpreter
 start_time=time.perf_counter()
-source_code = ['print "2*2"']
+source_code = ['print "2*2"','def a = 27','print a+2+a']
 for i in source_code:
     result = interpret(i)
 final_time=time.perf_counter()

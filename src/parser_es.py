@@ -35,6 +35,9 @@ def parse(tokens):
         while current_token.type in (TokenType.PLUS, TokenType.MINUS,TokenType.MULTIPLICATION, TokenType.DIVIDE):
             op = current_token.type
             eat(current_token.type)
+            if current_token.type == TokenType.VARIABLE:
+                current_token.type = type_check(var_class.var[current_token.value])
+                current_token.value = var_class.var[current_token.value]
             if result_type == TokenType.STRING:
                 if current_token.value.startswith('"') and current_token.value.endswith('"') or current_token.value.startswith("'") and current_token.value.endswith("'"):
                     current_token.value=current_token.value[1:-1]
