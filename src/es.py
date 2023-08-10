@@ -3,6 +3,10 @@ from lexer_es import lexer
 import argparse
 import time
 
+#python -m PyInstaller es.py
+
+use_interpreter = False
+
 # Step 4: Interpreter
 def interpret(input_text):
     tokens = lexer(input_text)
@@ -18,18 +22,20 @@ def parse_lines_from_file(file_path):
         print(f"File '{file_path}' not found.")
         return []
 
-source_code = []
-
 def command():
     parser = argparse.ArgumentParser(description='ESplit')
     parser.add_argument('run', help='run')
     args = parser.parse_args()
 
     if args.run.endswith('.es'):
-        source_code=parse_lines_from_file(args.run)
+        code=parse_lines_from_file(args.run)
+        return code
     else:
         print('please enter .es file')
-command()
+if use_interpreter:
+    source_code = parse_lines_from_file(input('>'))
+else:
+    source_code = command()
 
 print('/start/')
 start_time=time.perf_counter()
