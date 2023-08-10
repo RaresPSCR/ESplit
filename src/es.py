@@ -22,7 +22,7 @@ source_code = []
 
 def command():
     parser = argparse.ArgumentParser(description='ESplit')
-    parser.add_argument('run', choices=[], help='run')
+    parser.add_argument('run', help='run')
     args = parser.parse_args()
 
     if args.run.endswith('.es'):
