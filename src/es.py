@@ -39,7 +39,10 @@ else:
 
 print('/start/')
 start_time=time.perf_counter()
-for i in source_code:
-    result = interpret(i)
+for i in range(0,len(source_code)):
+    result = interpret(source_code[i])
+    if result.startswith('goto'):
+        split_goto=result.split(' ')
+        i=int(split_goto[1])+1
 final_time=time.perf_counter()
 print(f"/finished in: {final_time-start_time}/")

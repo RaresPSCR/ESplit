@@ -58,6 +58,9 @@ def parse(tokens):
             eat(TokenType.PRINT)
             value = expr()
             print(value)  # Print the result of the expression
+        elif current_token.type == TokenType.GOTO:
+            eat(TokenType.GOTO)
+            return "goto "+current_token.value
         elif current_token.type == TokenType.DEFINE:
             eat(TokenType.DEFINE)
             name=current_token.value

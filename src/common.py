@@ -1,5 +1,6 @@
 
 class TokenType:
+    GOTO = 'GOTO'
     INTEGER = 'INTEGER'
     STRING = 'STR'
     PLUS = 'PLUS'
