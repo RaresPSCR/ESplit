@@ -5,7 +5,7 @@ import time
 
 #python -m PyInstaller es.py
 
-use_interpreter = False
+use_interpreter = True
 
 # Step 4: Interpreter
 def interpret(input_text):
@@ -39,10 +39,14 @@ else:
 
 print('/start/')
 start_time=time.perf_counter()
-for i in range(0,len(source_code)):
+i=0
+while i < len(source_code):
     result = interpret(source_code[i])
-    if result.startswith('goto'):
-        split_goto=result.split(' ')
-        i=int(split_goto[1])+1
+    if result:
+        if result.startswith('goto'):
+            split_goto=result.split(' ')
+            i=int(split_goto[1])
+    else:
+        i+=1
 final_time=time.perf_counter()
 print(f"/finished in: {final_time-start_time}/")

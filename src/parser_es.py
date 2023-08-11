@@ -60,7 +60,7 @@ def parse(tokens):
             print(value)  # Print the result of the expression
         elif current_token.type == TokenType.GOTO:
             eat(TokenType.GOTO)
-            return "goto "+current_token.value
+            return "goto "+str(current_token.value)
         elif current_token.type == TokenType.DEFINE:
             eat(TokenType.DEFINE)
             name=current_token.value
@@ -74,4 +74,7 @@ def parse(tokens):
             return expr()
 
     while current_token.type != TokenType.EOF:
-        statement()
+        result = statement()  # Store the result of statement() function
+        if result:
+            if result.startswith("goto"):
+                return result  # Return the result if it's "goto"

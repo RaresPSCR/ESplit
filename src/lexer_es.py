@@ -40,6 +40,8 @@ def lexer(input_text):
                             tokens.append(Token(TokenType.PRINT, word))
                         elif word == 'def':
                             tokens.append(Token(TokenType.DEFINE, word))
+                        elif word == 'goto':
+                            tokens.append(Token(TokenType.GOTO, word))
                         elif word in var_class.var:
                             tokens.append(Token(TokenType.VARIABLE, word))
                         elif word.startswith('"') and word.endswith('"') or word.startswith("'") and word.endswith("'"):
@@ -53,6 +55,8 @@ def lexer(input_text):
                     tokens.append(Token(TokenType.PRINT, word))
                 elif word == 'def':
                     tokens.append(Token(TokenType.DEFINE, word))
+                elif word == 'goto':
+                            tokens.append(Token(TokenType.GOTO, word))
                 elif word in var_class.var:
                     tokens.append(Token(TokenType.VARIABLE, word))
                 elif word.startswith('"') and word.endswith('"') or word.startswith("'") and word.endswith("'"):
