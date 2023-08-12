@@ -5,7 +5,7 @@ import time
 
 #python -m PyInstaller es.py
 
-use_interpreter = True
+use_interpreter = False
 
 # Step 4: Interpreter
 def interpret(input_text):
@@ -45,7 +45,7 @@ while i < len(source_code):
     if result:
         if result.startswith('goto'):
             split_goto=result.split(' ')
-            i=int(split_goto[1])
+            i=int(split_goto[1])-1
     else:
         i+=1
 final_time=time.perf_counter()
