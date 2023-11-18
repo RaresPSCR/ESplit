@@ -85,7 +85,7 @@ def parse(tokens):
             except:
                 eat(TokenType.VARIABLE)
             eat(TokenType.DOUBLE_EQUALS) # apparently the lexer treats = as ==
-            var_class.add_variable(name,current_token.value)
+            var_class.add_variable(name,expr())
         else:
             return expr()
 
