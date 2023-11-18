@@ -10,6 +10,7 @@ class Token:
 # Lexer
 def lexer(input_text):
     tokens = []
+    double_eq=False
     str_enable=False
     current_pos = 0
     keyword = ''
@@ -28,6 +29,16 @@ def lexer(input_text):
         
         if not str_enable:
 
+            if char=="=":
+                current_pos+=1
+                if char=='=':
+                    current_pos+=1
+                    word="=="
+                    double_eq=True
+                    tokens.append(Token(TokenType.DOUBLE_EQUALS, word))
+                else:
+                    tokens.append(Token(TokenType.EQUALS, word))
+
             if char.isalpha() or char=='"' or char=="'":
                 word = ''
                 if current_pos < len(input_text):
@@ -40,6 +51,14 @@ def lexer(input_text):
                             tokens.append(Token(TokenType.PRINT, word))
                         elif word == 'def':
                             tokens.append(Token(TokenType.DEFINE, word))
+                        elif word == 'true':
+                            tokens.append(Token(TokenType.TRUE, word))
+                        elif word == 'false':
+                            tokens.append(Token(TokenType.FALSE, word))
+                        elif word == 'if':
+                            tokens.append(Token(TokenType.IF, word))
+                        elif word == 'endif':
+                            tokens.append(Token(TokenType.ENDIF, word))
                         elif word == 'goto':
                             tokens.append(Token(TokenType.GOTO, word))
                         elif word in var_class.var:
@@ -55,6 +74,10 @@ def lexer(input_text):
                     tokens.append(Token(TokenType.PRINT, word))
                 elif word == 'def':
                     tokens.append(Token(TokenType.DEFINE, word))
+                elif word == 'if':
+                    tokens.append(Token(TokenType.IF, word))
+                elif word == 'endif':
+                    tokens.append(Token(TokenType.ENDIF, word))
                 elif word == 'goto':
                             tokens.append(Token(TokenType.GOTO, word))
                 elif word in var_class.var:
@@ -64,7 +87,7 @@ def lexer(input_text):
                 else:
                     tokens.append(Token(TokenType.UNEXPECTED_KEYWORD, word))
 
-            if char.isdigit():
+            if char.isdigit(): #
                 digits = ''
                 while current_pos < len(input_text) and input_text[current_pos].isdigit():
                     digits += input_text[current_pos]
@@ -87,7 +110,7 @@ def lexer(input_text):
                 tokens.append(Token(TokenType.DIVIDE, char))
                 current_pos += 1
 
-            elif char == '=':
+            elif char == '=' and double_eq==False:
                 tokens.append(Token(TokenType.EQUALS, char))
                 current_pos += 1
 

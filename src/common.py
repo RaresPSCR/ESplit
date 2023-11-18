@@ -1,6 +1,11 @@
 
 class TokenType:
     GOTO = 'GOTO'
+    IF = 'IF'
+    FALSE = 'FALSE'
+    TRUE = 'TRUE'
+    DOUBLE_EQUALS = '=='
+    ENDIF = 'ENDIF'
     INTEGER = 'INTEGER'
     STRING = 'STR'
     PLUS = 'PLUS'
