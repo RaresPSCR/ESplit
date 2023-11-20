@@ -1,0 +1,55 @@
+"""nonlocal current_token
+        sides=[None,None]
+
+        if current_token.type == TokenType.VARIABLE:
+            current_token.type = type_check(var_class.var[current_token.value])
+            current_token.value = var_class.var[current_token.value]
+
+        result = current_token.value
+        print(result)
+        result_type = current_token.type
+        if result_type == TokenType.STRING:
+            if result.startswith('"') and result.endswith('"') or result.startswith("'") and result.endswith("'"):
+                result=result[1:-1]
+
+        eat(current_token.type)
+
+        while current_token.type in (TokenType.PLUS, TokenType.MINUS,TokenType.MULTIPLICATION, TokenType.DIVIDE, TokenType.DOUBLE_EQUALS) or current_token.value in (">","<"):
+            op = current_token.type
+            opv =current_token.value
+            eat(current_token.type)
+            if current_token.type == TokenType.VARIABLE:
+                current_token.type = type_check(var_class.var[current_token.value])
+                current_token.value = var_class.var[current_token.value]
+            if result_type == TokenType.STRING:
+                if current_token.value.startswith('"') and current_token.value.endswith('"') or current_token.value.startswith("'") and current_token.value.endswith("'"):
+                    current_token.value=current_token.value[1:-1]
+            if op == TokenType.PLUS:
+                result += current_token.value
+            if op == TokenType.DOUBLE_EQUALS:
+                sides[0]=result
+                result=0
+                print("here",sides)
+            elif op == TokenType.MINUS:
+                result -= current_token.value
+            elif op == TokenType.MULTIPLICATION:
+                result *= current_token.value
+            elif op == TokenType.DIVIDE:
+                result /= current_token.value
+            elif opv == ">" or opv == "<":
+                sides[0]=result
+                result=0
+            eat(current_token.type)
+
+        if current_token.type == TokenType.EOF:
+            if sides[0]:
+                sides[1]=result
+                #print(sides)
+                #print(sides[0]==sides[1])
+                if opv == ">":
+                    return sides[0]>sides[1]
+                elif opv == "<":
+                    return sides[0]<sides[1]
+                return sides[0]==sides[1]
+
+        return result"""

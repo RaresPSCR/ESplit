@@ -1,7 +1,6 @@
 from common import TokenType
 from parser_es import var_class
 
-
 class Token:
     def __init__(self, type, value):
         self.type = type
@@ -112,6 +111,14 @@ def lexer(input_text):
 
             elif char == '=' and double_eq==False:
                 tokens.append(Token(TokenType.EQUALS, char))
+                current_pos += 1
+            
+            elif char == '(':
+                tokens.append(Token(TokenType.OE, char))
+                current_pos += 1
+            
+            elif char == ')':
+                tokens.append(Token(TokenType.CE, char))
                 current_pos += 1
 
             elif char.isspace():

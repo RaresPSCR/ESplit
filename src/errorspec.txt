@@ -1,0 +1,4 @@
+error 001: the get_expr() function cant find TokenType.OE as the first token (can't find the expression; it's supposed to find an expression after it)
+ - error 001-2: the get_expr_wp() function gets EOL as the first token of the expression
+error C01: the compile cannot find the file
+error C02: the file is not .es

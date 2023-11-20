@@ -2,6 +2,8 @@
 class TokenType:
     GOTO = 'GOTO'
     IF = 'IF'
+    OE = "("
+    CE = ")"
     FALSE = 'FALSE'
     TRUE = 'TRUE'
     DOUBLE_EQUALS = '=='

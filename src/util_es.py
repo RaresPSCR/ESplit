@@ -10,3 +10,11 @@ def type_check(value):
             return TokenType.FLOAT
         except ValueError:
             return TokenType.STRING
+def convert(value):
+    try:
+        return int(value)
+    except:
+        try:
+            return float(value)
+        except:
+            return value
