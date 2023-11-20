@@ -1,5 +1,5 @@
 from storage_sys_es import Variable
-from util_es import type_check # utils_es contains lexer_es
+from util_es import type_check, convert # utils_es contains lexer_es
 from common import TokenType
 
 var_class=Variable()
@@ -49,6 +49,10 @@ def parse(tokens):
                 rez+=str(current_token.value)
                 current_pos+=1
                 current_token=tokens[current_pos]
+            try:
+                rez=convert(rez)
+            except:
+                pass
             return rez
         else:
             cp=current_pos-1
